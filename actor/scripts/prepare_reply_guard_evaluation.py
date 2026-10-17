@@ -1,0 +1,102 @@
+"""Freeze the referral-veto correction separately from the unchanged full census."""
+
+import difflib
+import hashlib
+import json
+import shutil
+import tempfile
+from pathlib import Path
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    project = Path(__file__).resolve().parents[1]
+    baseline = project / "artifacts/full97-0u4lzs9c"
+    manifest = json.loads((baseline / "source-manifest.json").read_text())["files"]
+    if any(digest(baseline / name) != value for name, value in manifest.items()):
+        raise ValueError("Original census snapshot changed")
+    changed = {
+        str(path.relative_to(project))
+        for path in (project / "src").rglob("*.py")
+        if not (baseline / path.relative_to(project)).is_file()
+        or digest(path) != digest(baseline / path.relative_to(project))
+    }
+    expected = {
+        "src/cayu_tau3_banking/agent_memory.py",
+        "src/cayu_tau3_banking/admission_progress.py",
+        "src/cayu_tau3_banking/runtime_banking.py",
+    }
+    if changed != expected:
+        raise ValueError(f"Unexpected actor changes: {sorted(changed)}")
+    root = Path(tempfile.mkdtemp(prefix="reply-guard-evaluation-", dir=project / "artifacts"))
+    for directory in ("src", "tests", "scripts"):
+        shutil.copytree(
+            project / directory,
+            root / directory,
+            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+        )
+    for filename in ("README.md", "pyproject.toml"):
+        shutil.copy2(project / filename, root / filename)
+    shutil.copy2(project / "scripts/run_lean_advice_task.py", root / "run_pilot.py")
+    (root / ".vendor").symlink_to((project / ".vendor").resolve(), target_is_directory=True)
+    prior = json.loads((baseline / "protocol.json").read_text())
+    protocol = {
+        key: prior[key]
+        for key in (
+            "seed",
+            "trials",
+            "whole_task_retries",
+            "actor",
+            "simulator",
+            "retrieval",
+            "runtime",
+            "limits",
+            "navigation_limits",
+            "credential_handling",
+            "framework_commit",
+            "tau_commit",
+            "tau_repository",
+            "corpus_embedding_cache",
+            "cli_arguments",
+        )
+    }
+    protocol.update(
+        task_ids=["task_017", "task_014"],
+        purpose="Validate removal of a phrase-triggered response veto and bounded response-denial recovery",
+        selection="Known development regressions inspected after the census attempts: identity-question false positive and genuine referral request. Not holdouts or part of the census score.",
+        treatment=[
+            "Remove referral regex classifier and response veto; no change to bank-tool authorization",
+            "Count withheld responses in existing eight-denied-rounds-per-customer allowance; never bypass on exhaustion",
+        ],
+        baseline=str(baseline),
+        baseline_manifest_sha256=digest(baseline / "source-manifest.json"),
+        max_parallel_task_processes=1,
+        stopping_policy="Require offline qualification and a successful connectivity check. One attempt each, serially, no whole-task retries or deadline extensions. Stop on execution/provider errors; preserve failures.",
+        qualification="Pending: do not launch live tasks until the candidate's offline suite passes",
+    )
+    (root / "protocol.json").write_text(json.dumps(protocol, indent=2) + "\n")
+    patch = []
+    for path in sorted(root.rglob("*.py")):
+        name = str(path.relative_to(root))
+        previous = baseline / name
+        old = previous.read_text().splitlines(keepends=True) if previous.is_file() else []
+        patch.extend(
+            difflib.unified_diff(
+                old, path.read_text().splitlines(keepends=True), f"a/{name}", f"b/{name}"
+            )
+        )
+    (root / "candidate.patch").write_text("".join(patch))
+    files = {
+        str(path.relative_to(root)): digest(path)
+        for path in sorted(root.rglob("*"))
+        if path.is_file() and ".vendor" not in path.parts
+    }
+    (root / "source-manifest.json").write_text(json.dumps({"files": files}, indent=2) + "\n")
+    print(json.dumps({"root": str(root), "actor_changes": sorted(changed), "files": len(files)}))
+
+
+if __name__ == "__main__":
+    main()

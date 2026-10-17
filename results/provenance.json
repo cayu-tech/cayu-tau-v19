@@ -1,0 +1,97 @@
+{
+  "checked_unix": 1791028784.589818,
+  "source_manifest_sha256": "93300d01e05e9721de27e650377a270467665aecdd3792d361646d694b92714d",
+  "raw_results_sha256": "686736a06c471bad2a31a670a117b320d9a698eda251866cfb76b94097bf4d87",
+  "raw_results_bytes": 140697447,
+  "task_count": 97,
+  "trajectory_count": 388,
+  "trial_seeds": [
+    626729,
+    373753,
+    361454,
+    1567
+  ],
+  "complete_task_trial_seed_matrix": true,
+  "upstream_format_check": true,
+  "upstream_task_check": true,
+  "upstream_trial_check": true,
+  "upstream_config_check": true,
+  "upstream_pass_hat_percent": {
+    "1": 49.74226804123711,
+    "2": 40.20618556701031,
+    "3": 36.08247422680412,
+    "4": 34.02061855670103
+  },
+  "retrieval_config": "no_knowledge",
+  "history": [
+    {
+      "file": "before-resume-1790936100060077916.json.gz",
+      "sha256": "9b2e3f93ad7d97b67fc4757c55051880dfa254f991215290636baf3847e76f39",
+      "recorded": 97,
+      "scored": 96,
+      "unscored": 1
+    },
+    {
+      "file": "before-resume-1791023877904058466.json.gz",
+      "sha256": "467acd4fda5df0cd9cd32cc2c2954d33a76c257a0ede408c26f50d017955a19f",
+      "recorded": 388,
+      "scored": 384,
+      "unscored": 4
+    },
+    {
+      "file": "before-resume-1791024051098187506.json.gz",
+      "sha256": "ee62eac292d3fc803e64ad7af47a8e3aee0d5b6c9d7e63d0ef5b2068df5f8297",
+      "recorded": 388,
+      "scored": 384,
+      "unscored": 4
+    },
+    {
+      "file": "before-resume-1791026015949002198.json.gz",
+      "sha256": "ae97cf506f56b412c360492f230b12ba1648f6d4988e0e30bbe9b99bc4b873e1",
+      "recorded": 388,
+      "scored": 388,
+      "unscored": 0
+    }
+  ],
+  "previously_scored_unique_rows_verified": 388,
+  "scored_row_mismatches": [],
+  "unique_historical_infrastructure_attempts": 5,
+  "infrastructure_retried_slots": 5,
+  "termination_counts": {
+    "user_stop": 386,
+    "user_error": 2
+  },
+  "budget_stop_records": [],
+  "trials": {
+    "1": {
+      "passed": 49,
+      "failed": 48
+    },
+    "2": {
+      "passed": 52,
+      "failed": 45
+    },
+    "3": {
+      "passed": 47,
+      "failed": 50
+    },
+    "4": {
+      "passed": 45,
+      "failed": 52
+    }
+  },
+  "tau_commit": "fc0055dc4e0a316c3f83133267fbd6faaa770992",
+  "evaluation_first_start": "2026-09-28T12:50:53.222044",
+  "evaluation_last_end": "2026-10-03T11:13:19.300147",
+  "public_trajectory_sha256": "98385f412050e855c129cf1806be9a9556b92c89602ce2b942d60b36b09f4969",
+  "public_trajectory_bytes": 19188627,
+  "messages_with_diagnostics_removed": 9721,
+  "export_changes": "Only message.raw_data removed except explicit agent_termination; no public-content, task, seed or grade changes.",
+  "canonical_source_and_history_preserved": true,
+  "maintainer_acceptance": "pending",
+  "source_files_verified": true,
+  "source_files_count": 357,
+  "current_upstream_commit": "5bfa7e37b36656b37dc6d022156be6563c1007f3",
+  "banking_data_tools_reward_metrics_unchanged_from_current_upstream": true,
+  "final_source_check_sha256": "4e1a25a215023eac7d7e0fd6f483238f37a24feff2251cae516c467ef165595a"
+}

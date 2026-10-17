@@ -1,0 +1,10 @@
+{
+  "scope": "Prospective lexical holdout for the frozen retrieval implementation; source-informed queries authored by the implementer, not independent blind evaluation. Do not tune and continue calling these held-out.",
+  "cases": [
+    {"id": "daily_monthly_interaction", "query": "Everyone Pay daily sending cap reached remaining monthly allowance", "required": ["doc_everyone_pay_sending_limits_002"]},
+    {"id": "group_payment_size", "query": "Split the Bill maximum people group total amount", "required": ["doc_everyone_pay_split-the-bill_001"]},
+    {"id": "virtual_card_disable", "query": "business virtual card revoke versus cancel temporary permanent", "required": ["doc_business_credit_cards_virtual_card_management_003"]},
+    {"id": "sweep_stops", "query": "automatic sweep pauses monthly transfer limit minimum excess checking balance", "required": ["doc_business_savings_accounts_automatic_sweep_program_008"]},
+    {"id": "subscription_allowances", "query": "Rho Bank Plus membership advisor hours ATM fee reimbursements monthly", "required": ["doc_personal_subscriptions_rho_bank_plus_001"]}
+  ]
+}

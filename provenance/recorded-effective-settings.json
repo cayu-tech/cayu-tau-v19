@@ -1,0 +1,41 @@
+{
+  "num_trials": 4,
+  "max_steps": 200,
+  "max_errors": 10,
+  "seed": 300,
+  "retrieval_config": "no_knowledge",
+  "agent_info": {
+    "implementation": "cayu_native_banking",
+    "llm": "gpt-5.6-sol",
+    "llm_args": {
+      "runtime": "native",
+      "provider": "subscription",
+      "user_provider": "platform",
+      "runtime_max_steps": 192,
+      "planning_mode": "outcomes",
+      "controller_mode": "advisory",
+      "decision_packets": false,
+      "candidate_profile": "constraints-v4",
+      "intent_interpretation": "acting_model",
+      "focused_policy_file": null,
+      "lexical_navigation": false,
+      "cayu_commit": "d8e530acafa3cb7ab9596340182cffc8d9467d5d",
+      "tau2_commit": "fc0055dc4e0a316c3f83133267fbd6faaa770992",
+      "reasoning_effort": "xhigh",
+      "memory_retrieval": "hybrid",
+      "corpus_sha256": "4175411e38b5597fb6a4f01103a15cd022f274b753ff9f85b581801b4e05d641",
+      "semantic_plan_verifier": false,
+      "semantic_action_verifier": false,
+      "semantic_response_verifier": false
+    },
+    "voice_settings": null
+  },
+  "customer": {
+    "implementation": "user_simulator",
+    "llm": "openai/gpt-5.2",
+    "llm_args": {
+      "reasoning_effort": "low",
+      "timeout": 300.0
+    }
+  }
+}

@@ -1,0 +1,236 @@
+{
+  "version": "cayu.tau3.section-embedding-experiment.v1",
+  "model": "text-embedding-3-large",
+  "dimensions": 3072,
+  "corpus_sha256": "4175411e38b5597fb6a4f01103a15cd022f274b753ff9f85b581801b4e05d641",
+  "cases": [
+    {
+      "id": "replacement_exact",
+      "group": "replacement",
+      "query": "Credit Card Replacement Shipping Options and Fees",
+      "required": {
+        "doc_credit_cards_credit_card_replacements_002": "Standard delivery"
+      },
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "replacement_paraphrase",
+      "group": "replacement",
+      "query": "How soon can a replacement credit card arrive, and does faster delivery cost more depending on my card tier?",
+      "required": {
+        "doc_credit_cards_credit_card_replacements_002": "Expedited shipping fees by card tier"
+      },
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "checking_referral",
+      "group": "scope",
+      "query": "What rolling time window limits checking account referral bonuses, and do referrals across accounts count together?",
+      "required": {
+        "doc_bank_accounts_bank_accounts_(general)_047": "9-day"
+      },
+      "scope_prefix": "doc_bank_accounts_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "card_referral",
+      "group": "scope",
+      "query": "What rolling time window limits credit card referral bonuses across different card types?",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_002": "7-day"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "rewards_units",
+      "group": "rewards",
+      "query": "How are cash back and sustainability points represented and converted to dollars?",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_006": "$0.01"
+      },
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "apy_stacking",
+      "group": "rewards",
+      "query": "If I hold several credit cards, do all their savings APY boosts add together?",
+      "required": {
+        "doc_bank_accounts_bank_accounts_(general)_045": "do NOT stack"
+      },
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "personal_apr_inventory",
+      "group": "multi_document",
+      "query": "Compare Bronze Rewards Card and Silver Rewards Card introductory APR promotion dates.",
+      "required": {
+        "doc_credit_cards_bronze_rewards_card_008": "2026-02-28",
+        "doc_credit_cards_silver_rewards_card_009": "2025-12-31"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "business_fee_inventory",
+      "group": "multi_document",
+      "query": "Compare Business Silver Rewards Card and Business Platinum Rewards Card first-year fee waiver offer windows.",
+      "required": {
+        "doc_business_credit_cards_business_silver_rewards_card_011": "2025-11-15",
+        "doc_business_credit_cards_business_platinum_rewards_card_011": "2026-02-28"
+      },
+      "scope_prefix": "doc_business_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "silver_bonus_validity",
+      "group": "dated_evidence",
+      "query": "Was the Silver Rewards Card $500 signup statement credit still available for accounts opened on November 14, 2025? Retrieve the offer window.",
+      "required": {
+        "doc_credit_cards_silver_rewards_card_010": "2025-06-30"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "eco_apr_validity",
+      "group": "dated_evidence",
+      "query": "Retrieve the EcoCard introductory zero-interest offer window to determine eligibility for an account opened in November 2025.",
+      "required": {
+        "doc_credit_cards_ecocard_010": "2025-03-31"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "business_promo_start",
+      "group": "dated_evidence",
+      "query": "When does the Business Silver Rewards Card new-customer annual fee waiver begin, and when does it end?",
+      "required": {
+        "doc_business_credit_cards_business_silver_rewards_card_011": "2025-11-15"
+      },
+      "scope_prefix": "doc_business_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "personal_bonus_inventory",
+      "group": "multi_document",
+      "query": "Retrieve personal credit-card signup bonus documents and their offer windows for Silver Rewards Card, EcoCard and Diamond Elite Card.",
+      "required": {
+        "doc_credit_cards_silver_rewards_card_010": "2025-06-30",
+        "doc_credit_cards_ecocard_009": "2025-12-15",
+        "doc_credit_cards_diamond_elite_card_009": "2026-01-31"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-v1"
+    },
+    {
+      "id": "card_referral_reset",
+      "group": "scope",
+      "query": "For credit card referral rewards, does the quota reset every Monday, or does the bank count elapsed time since my previous rewards?",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_002": "not calendar weeks"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "checking_referral_tenure",
+      "group": "scope",
+      "query": "I recently switched checking account tiers. Is my eligibility to refer a friend measured from that switch or from when I first opened a checking account?",
+      "required": {
+        "doc_bank_accounts_bank_accounts_(general)_047": "the date your earliest checking account was opened"
+      },
+      "scope_prefix": "doc_bank_accounts_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "blue_overdraft_price",
+      "group": "procedure",
+      "query": "If my Blue checking account is short of money, what would automatic coverage from a linked account cost each time?",
+      "required": {
+        "doc_checking_accounts_blue_account_004": "$12.50"
+      },
+      "scope_prefix": "doc_checking_accounts_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "blue_overdraft_enrollment",
+      "group": "procedure",
+      "query": "Where do I choose a backup funding account and turn on overdraft protection for my Blue Account?",
+      "required": {
+        "doc_checking_accounts_blue_account_004": "Choose the account to link as your funding source and confirm."
+      },
+      "scope_prefix": "doc_checking_accounts_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "dispute_partial_refund",
+      "group": "tool_policy",
+      "query": "For a formal credit-card dispute seeking only part of the purchase price back, which refund fields must be supplied?",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_014": "partial_refund_amount"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "dispute_reissue",
+      "group": "tool_policy",
+      "query": "When filing a transaction dispute after already ordering a replacement card, should the dispute mark the card as active or cancelled and reissued?",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_014": "cancel_and_reissue"
+      },
+      "scope_prefix": "doc_credit_cards_",
+      "suite": "public-retrieval-validation-v1"
+    },
+    {
+      "id": "gold_plus_card_bonus",
+      "query": "I hold a Gold Plus savings account and a Bronze Rewards credit card under the same customer profile. What extra savings yield do I get, and must I enroll?",
+      "required": {
+        "doc_savings_accounts_gold_plus_account_009": "+0.15%"
+      },
+      "suite": "public-retrieval-fresh-v2"
+    },
+    {
+      "id": "business_silver_external_transfer",
+      "query": "From a business Silver Plus Saver, how long does an ordinary transfer to my linked external bank take, and what does the domestic wire alternative cost?",
+      "required": {
+        "doc_business_savings_accounts_silver_plus_saver_005": "2 business days"
+      },
+      "suite": "public-retrieval-fresh-v2"
+    },
+    {
+      "id": "platinum_banker_access",
+      "query": "With a Platinum savings account, how do I arrange help from a dedicated banker for a complicated disbursement?",
+      "required": {
+        "doc_savings_accounts_platinum_account_004": "Send a secure message"
+      },
+      "suite": "public-retrieval-fresh-v2"
+    },
+    {
+      "id": "gold_business_review_preparation",
+      "query": "Our business has a Gold Plus Saver. Are financial review meetings included, and which documents should we prepare?",
+      "required": {
+        "doc_business_savings_accounts_gold_plus_saver_003": "cash flow projections"
+      },
+      "suite": "public-retrieval-fresh-v2"
+    },
+    {
+      "id": "observed-tier-query",
+      "query": "Crypto-Cash Back card tier entry-tier mid-tier premium retention offer classification",
+      "required": {
+        "doc_credit_cards_credit_cards_(general)_015": "Entry Tier"
+      },
+      "suite": "observed-regression"
+    }
+  ],
+  "whole_chunks": 698,
+  "section_chunks": 2974,
+  "unique_embedding_texts": 3647,
+  "embedding_input_token_upper_bound": 1803800,
+  "max_input_token_upper_bound": 7888,
+  "controls": "Same queries/model/weights/limits. Canonical document identities in BOTH paired arms. All lexical and offer-facet channels frozen from whole-document control. Only ordinary semantic channel replaced. Raw original fusion is a separate reference, not the paired control.",
+  "gate": "No per-query final recall@4 regression versus paired whole-document control; observed missing evidence must improve. No retuning or automatic promotion. Retrieval only, not a tau task pass.",
+  "limitations": "Existing small development suites, not blind validation. No automatic admission or runtime test. Facet semantic representation intentionally held constant."
+}

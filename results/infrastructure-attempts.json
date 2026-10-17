@@ -1,0 +1,62 @@
+[
+  {
+    "id": "84a360a3-b034-4f46-9e92-24a0702083d3",
+    "task_id": "task_064",
+    "trial": 0,
+    "seed": 626729,
+    "timestamp": "2026-09-28T16:13:15.084153",
+    "termination_reason": "infrastructure_error",
+    "final_reward": 1.0,
+    "error_type": "RuntimeCallbackExecutionError",
+    "error_summary": "Runtime callback failed (ModelStreamDeadlineError); conversation stopped.",
+    "failed_after_attempts": 1
+  },
+  {
+    "id": "3e648758-f2e2-44f9-97f1-8691bfc77b5e",
+    "task_id": "task_025",
+    "trial": 1,
+    "seed": 373753,
+    "timestamp": "2026-10-02T11:23:05.625546",
+    "termination_reason": "infrastructure_error",
+    "final_reward": 1.0,
+    "error_type": "RuntimeCallbackExecutionError",
+    "error_summary": "Runtime callback failed (ModelStreamDeadlineError); conversation stopped.",
+    "failed_after_attempts": 1
+  },
+  {
+    "id": "f608967e-6e01-443a-be81-977070ea9d27",
+    "task_id": "task_086",
+    "trial": 1,
+    "seed": 373753,
+    "timestamp": "2026-10-02T17:12:50.627893",
+    "termination_reason": "infrastructure_error",
+    "final_reward": 0.0,
+    "error_type": "RuntimeCallbackExecutionError",
+    "error_summary": "Runtime callback failed (ModelProviderError); conversation stopped.",
+    "failed_after_attempts": 1
+  },
+  {
+    "id": "afb8abb6-0320-434f-a904-d721c682f589",
+    "task_id": "task_043",
+    "trial": 2,
+    "seed": 361454,
+    "timestamp": "2026-10-02T20:43:21.721148",
+    "termination_reason": "infrastructure_error",
+    "final_reward": 1.0,
+    "error_type": "RuntimeCallbackExecutionError",
+    "error_summary": "Runtime callback failed (ModelStreamDeadlineError); conversation stopped.",
+    "failed_after_attempts": 1
+  },
+  {
+    "id": "b559a104-3597-4a30-805b-ccde05ad004a",
+    "task_id": "task_059",
+    "trial": 2,
+    "seed": 361454,
+    "timestamp": "2026-10-02T22:20:58.506788",
+    "termination_reason": "infrastructure_error",
+    "final_reward": 1.0,
+    "error_type": "RuntimeCallbackExecutionError",
+    "error_summary": "Runtime callback failed (ModelProviderError); conversation stopped.",
+    "failed_after_attempts": 1
+  }
+]

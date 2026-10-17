@@ -1,0 +1,6 @@
+{
+  "release": "https://github.com/talgat0528/tau2-bench/releases/tag/cayu-v19r3-20261003",
+  "original_relative_path": "trajectories/cayu-v19r3_banking_knowledge_4trials.json",
+  "uncompressed_sha256": "98385f412050e855c129cf1806be9a9556b92c89602ce2b942d60b36b09f4969",
+  "note": "Exact previously published sanitized trajectories; gzip packaging only. No private canonical/provider captures."
+}
